@@ -18,6 +18,8 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          cd ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          ls -l
       # - name: Find Rust
       #   run: |
       #     apt-get update
@@ -30,6 +32,7 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
+          ls -la
           godot --headless --verbose --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
