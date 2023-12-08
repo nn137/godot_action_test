@@ -20,7 +20,7 @@ jobs:
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Find Rust
         run: |
-          sudo apt-get update
+          apt-get update
           curl https://sh.rustup.rs -sSf | bash -s -- -y
           PATH="/root/.cargo/bin:${PATH}"
           whereis cargo
