@@ -21,7 +21,7 @@ jobs:
       - name: Find Rust
         run: |
           apt-get update
-          apt-get install rustc
+          apt-get install rustc -y
           rustc --version
           rustup --version
           rustup update
