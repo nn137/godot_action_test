@@ -21,9 +21,12 @@ jobs:
       - name: Find Rust
         run: |
           apt-get update
-          curl https://sh.rustup.rs -sSf | bash -s -- -y
-          PATH="/root/.cargo/bin:${PATH}"
+          apt-get install rustc
+          rustc --version
+          rustup --version
+          rustup update
           whereis cargo
+          cargo --version
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
