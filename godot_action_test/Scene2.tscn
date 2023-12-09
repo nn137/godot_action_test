@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdes8n65jj1oy"]
+
+[ext_resource type="Texture2D" uid="uid://dmk7fivf735sc" path="res://icon.svg" id="1_kmtos"]
+
+[node name="Scene2" type="Node2D"]
+
+[node name="RotatingSprite" type="RotatingSprite" parent="."]
+speed = 0.01
+
+[node name="sprite" type="Sprite2D" parent="RotatingSprite"]
+position = Vector2(131, 530)
+texture = ExtResource("1_kmtos")
