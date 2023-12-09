@@ -32,8 +32,9 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
+          cd godot_action_test
           ls -la
-          godot --headless --verbose --export-release "Windows Desktop" build/windows/$EXPORT_NAME.exe
+          godot --headless --verbose --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
