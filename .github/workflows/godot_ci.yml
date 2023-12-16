@@ -26,15 +26,13 @@ jobs:
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
           cd ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
           ls -l
-      # - name: Find Rust
-      #   run: |
-      #     apt-get update
-      #     apt-get install rustc -y
-      #     rustc --version
-      #     rustup --version
-      #     rustup update
-      #     whereis cargo
-      #     cargo --version
+      - name: Verify Build tools
+        run: |
+          rustup default
+          rustup target list
+          rustup --version
+          rustc --version
+          cargo --version
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
