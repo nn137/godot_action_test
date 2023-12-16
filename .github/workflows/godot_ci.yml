@@ -17,7 +17,7 @@ jobs:
       - name: CI Setup
         run: |
           apt-get update
-          apt-get install curl
+          apt-get install curl -y
       - name: Rust Setup
         uses: dtolnay/rust-toolchain@stable
       - name: Godot Setup
