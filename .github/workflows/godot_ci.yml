@@ -20,6 +20,9 @@ jobs:
           apt-get install curl -y
       - name: Rust Setup
         uses: dtolnay/rust-toolchain@stable
+      - name: Rust Toolchain Setup
+        run: |
+          rustup target add x86_64-pc-windows-msvc
       - name: Godot Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates
@@ -33,8 +36,15 @@ jobs:
           rustup --version
           rustc --version
           cargo --version
+          whereis godot
+          godot --headless --version
       - name: Windows Build
         run: |
+          cd rust
+          ls -la
+          export GODOT4_BIN=godot
+          cargo build --release --target x86_64-pc-windows-msvc
+          cd ..
           mkdir -v -p build/windows
           cd godot_action_test
           ls -la
