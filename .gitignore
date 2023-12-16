@@ -15,6 +15,7 @@ mono_crash.*.json
 
 *.exe
 *.pck
+*.dll
 
 *.lock
 rust/target/
