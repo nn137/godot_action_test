@@ -77,7 +77,8 @@ jobs:
           echo %GODOT%
           echo %GODOT4%
           where godot
-          "%GODOT%" --version
+          godot --version
+          godot --headless --version
       - name: Rust build
         working-directory: ${{github.workspace}}/rust
         run: |
