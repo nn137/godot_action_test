@@ -81,8 +81,7 @@ jobs:
       - name: Godot export
         working-directory: ${{github.workspace}}/godot_action_test
         run: |
-          mkdir ../build/windows
-          godot --headless --verbose --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
+          godot --headless --verbose --export-release "Windows Desktop" ../build/windows/GodotActionTest.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
