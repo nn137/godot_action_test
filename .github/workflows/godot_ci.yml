@@ -69,11 +69,13 @@ jobs:
           version: 4.2.1
           use-dotnet: false
       - name: Check Dependencies
+        shell: cmd
         run: |
           rustup default
           rustc --version
-          $env:GODOT --version
-          $env:GODOT4 --version
+          dir C:\Users\runneradmin\bin\
+          echo %GODOT%
+          echo %GODOT4%
       - name: Rust build
         working-directory: ${{github.workspace}}/rust
         run: |
@@ -81,9 +83,10 @@ jobs:
           cargo build --release
       - name: Godot export
         working-directory: ${{github.workspace}}/godot_action_test
+        shell: cmd
         run: |
           mkdir ../build/windows
-          $env:GODOT --headless --verbose --export-release "Windows Desktop" ../build/windows/GodotActionTest.exe
+          %GODOT% --headless --verbose --export-release "Windows Desktop" ../build/windows/GodotActionTest.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
