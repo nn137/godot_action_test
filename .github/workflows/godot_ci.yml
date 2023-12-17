@@ -46,6 +46,7 @@ jobs:
           ls -la
           export GODOT4_BIN=godot
           cargo build --release --target x86_64-pc-windows-gnu
+          cp target/x86_64-pc-windows-gnu/release/rust.dll target/release/rust.dll
           cd ..
           mkdir -v -p build/windows
           cd godot_action_test
