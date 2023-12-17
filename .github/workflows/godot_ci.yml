@@ -76,6 +76,8 @@ jobs:
           dir C:\Users\runneradmin\bin\
           echo %GODOT%
           echo %GODOT4%
+          where godot
+          "%GODOT%" --version
       - name: Rust build
         working-directory: ${{github.workspace}}/rust
         run: |
