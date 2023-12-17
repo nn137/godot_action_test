@@ -54,5 +54,36 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: windows
+          name: windows_barichello
+          path: build/windows
+  export-windows-chickensoft:
+    name: Windows Export (Chickensoft)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: chickensoft-games/setup-godot@v1
+        name: Setup Godot
+        with:
+          version: 4.2.1
+          use-dotnet: false
+      - name: Check Dependencies
+        run: |
+          rustup default
+          rustc --version
+          godot --version
+      - name: Rust build
+        working-directory: ${{github.workspace}}/rust
+        run: |
+          set GODOT4_BIN=godot
+          cargo build --release
+      - name: Godot export
+        working-directory: ${{github.workspace}}/godot_action_test
+        run: |
+          mkdir ../build/windows
+          godot --headless --verbose --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows_chickensoft
           path: build/windows
