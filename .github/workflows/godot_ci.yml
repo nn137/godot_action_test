@@ -73,9 +73,9 @@ jobs:
         with:
           version: 4.2.1
           use-dotnet: false
-          path: godot/install
-          downloads-path: godot/download
-          bin-path: godot/bin
+          path: ${{github.workspace}}/godot/install
+          downloads-path: ${{github.workspace}}/godot/download
+          bin-path: ${{github.workspace}}/godot/bin
       - name: Check Dependencies
         shell: cmd
         run: |
