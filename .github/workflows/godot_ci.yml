@@ -73,12 +73,14 @@ jobs:
         with:
           version: 4.2.1
           use-dotnet: false
+          path: godot/install
+          downloads-path: godot/download
+          bin-path: godot/bin
       - name: Check Dependencies
         shell: cmd
         run: |
           rustup default
           rustc --version
-          dir C:\Users\runneradmin\bin\
           echo %GODOT%
           echo %GODOT4%
           where godot
