@@ -77,19 +77,13 @@ jobs:
           echo %GODOT%
           echo %GODOT4%
           where godot
-          godot --version
-          godot --headless --version
-      - name: Rust build
-        working-directory: ${{github.workspace}}/rust
-        run: |
-          set GODOT4_BIN=godot
-          cargo build --release
-      - name: Godot export
+      - name: Rust and Godot export
         working-directory: ${{github.workspace}}/godot_action_test
         shell: cmd
         run: |
+          set GODOT4_BIN=godot
           mkdir ../build/windows
-          %GODOT% --headless --verbose --export-release "Windows Desktop" ../build/windows/GodotActionTest.exe
+          export_win.bat
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
