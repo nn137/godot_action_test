@@ -9,6 +9,9 @@ jobs:
   export-windows-rust-barichello:
     name: Windows Export Rust (Barichello)
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Checkout
         uses: actions/checkout@v4
