@@ -86,8 +86,6 @@ jobs:
           echo %GODOT%
           echo %GODOT4%
           where godot
-          cd %GODOT%
-          dir
       - name: Rust and Godot export
         working-directory: ${{github.workspace}}/godot_action_test
         shell: cmd
