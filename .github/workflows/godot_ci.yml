@@ -80,10 +80,10 @@ jobs:
         run: |
           rustup default
           rustc --version
-          godot --version
           echo %GODOT%
           echo %GODOT4%
           where godot
+          %GODOT% --version
       - name: Rust and Godot export
         working-directory: ${{github.workspace}}/godot_action_test
         shell: cmd
