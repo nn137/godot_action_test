@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Verify Rust
         run: |
           rustup default
@@ -22,10 +22,11 @@ jobs:
         run: |
           cargo build --release
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows_rust_barichello
           path: rust/target/release/rust.dll
+          retention-days: 1
 
   export-windows-barichello:
     name: Windows Export (Barichello)
@@ -35,13 +36,13 @@ jobs:
       image: barichello/godot-ci:4.2
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Godot Export Template Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       - name: Download Rust artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: windows_rust_barichello
           path: rust/target/release/
@@ -57,30 +58,29 @@ jobs:
           mkdir -v -p ../build/windows
           godot --headless --verbose --export-release "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows_barichello
           path: build/windows
+          retention-days: 1
 
   export-windows-chickensoft:
     name: Windows Export (Chickensoft)
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - uses: chickensoft-games/setup-godot@v1.5.5
+        uses: actions/checkout@v4
+      - uses: chickensoft-games/setup-godot@v1.5.6
         name: Setup Godot
         with:
           version: 4.2.1
           use-dotnet: false
-          path: ${{github.workspace}}/godot/install
-          downloads-path: ${{github.workspace}}/godot/download
-          bin-path: ${{github.workspace}}/godot/bin
       - name: Check Dependencies
         shell: cmd
         run: |
           rustup default
           rustc --version
+          godot --version
           echo %GODOT%
           echo %GODOT4%
           where godot
@@ -88,11 +88,11 @@ jobs:
         working-directory: ${{github.workspace}}/godot_action_test
         shell: cmd
         run: |
-          set GODOT4_BIN=godot
           mkdir ../build/windows
           export_win.bat
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows_chickensoft
           path: build/windows
+          retention-days: 1
