@@ -70,6 +70,9 @@ jobs:
   export-windows-chickensoft:
     name: Windows Export (Chickensoft)
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -79,7 +82,6 @@ jobs:
           version: 4.2.1
           use-dotnet: false
       - name: Check Dependencies
-        shell: cmd
         run: |
           rustup default
           rustc --version
@@ -89,7 +91,6 @@ jobs:
           %GODOT% --version
       - name: Rust and Godot export
         working-directory: ${{github.workspace}}/godot_action_test
-        shell: cmd
         run: |
           mkdir ../build/windows
           export_win.bat
